@@ -17,7 +17,7 @@ class DbViewerLaunchActivity : AppCompatActivity() {
 
         var database = openOrCreateDatabase(dbName, Context.MODE_PRIVATE, null)
         val cursor = database.rawQuery(QUERY_TABLE_STRUCT, null)
-        test.text = buildString {
+        /*test.text = buildString {
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     val names = cursor.columnNames
@@ -25,6 +25,6 @@ class DbViewerLaunchActivity : AppCompatActivity() {
                 }
                 cursor.close()
             }
-        }
+        }*/
     }
 }

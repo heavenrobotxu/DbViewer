@@ -1,16 +1,9 @@
 package damiao.hr.dbviewerdemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Debug
 import android.widget.Toast
-import androidx.core.util.DebugUtils
-import damiao.hr.dbviewerdemo.database.DaoMaster
-import damiao.hr.dbviewerdemo.database.DaoSession
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import leakcanary.AppWatcher
-import leakcanary.LeakCanary
-import org.intellij.lang.annotations.Language
 
 class MainActivity : AppCompatActivity() {
 
