@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import miao.hr.dbviewer.R
 
-class TableDetailFragment : Fragment() {
+internal class TableDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

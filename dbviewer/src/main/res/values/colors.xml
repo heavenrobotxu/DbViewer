@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="db_viewer_background">#121212</color>
+    <color name="db_viewer_content_background">#1e1e1e</color>
+    <color name="db_viewer_content_light_background">#363636</color>
+    <color name="db_viewer_text_color">#e0e0e0</color>
+    <color name="db_viewer_light_purple_color">#c28ffe</color>
+    <color name="db_viewer_light_green_color">#00ddc5</color>
+</resources>

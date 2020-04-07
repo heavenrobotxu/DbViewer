@@ -1,17 +1,21 @@
 package miao.hr.dbviewer
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.ArrayMap
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_db_viewer_launch.*
+import miao.hr.dbviewer.db.SQLHandler
 import miao.hr.dbviewer.sql.QUERY_TABLE_STRUCT
 
-class DbViewerLaunchActivity : AppCompatActivity() {
+internal class DbViewerLaunchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_db_viewer_launch)
+
+        SQLHandler.init(applicationContext)
 
         val dbName = databaseList()[0]
 

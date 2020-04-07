@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="db_viewer_theme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/db_viewer_action_style</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+    <style name="db_viewer_action_style" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/db_viewer_content_background</item>
+        <item name="titleTextStyle">@style/db_viewer_action_text_style</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="db_viewer_action_text_style">
+        <item name="android:textColor">@color/db_viewer_text_color</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+</resources>

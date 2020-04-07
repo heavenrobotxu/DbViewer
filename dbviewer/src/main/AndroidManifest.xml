@@ -7,7 +7,7 @@
             android:label="dbViewer"
             android:icon="@mipmap/db_viewer"
             android:taskAffinity="miao.hr.dbviewer"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/db_viewer_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />

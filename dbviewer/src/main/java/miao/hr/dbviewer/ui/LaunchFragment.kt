@@ -9,8 +9,10 @@ import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_launch.*
 import kotlinx.android.synthetic.main.fragment_launch.view.*
 import miao.hr.dbviewer.R
+import miao.hr.dbviewer.db.SQLHandler
+import miao.hr.dbviewer.ui.adapter.DatabaseListAdapter
 
-class LaunchFragment : Fragment() {
+internal class LaunchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +28,9 @@ class LaunchFragment : Fragment() {
     }
 
     private fun initView(contentView: View) {
-        contentView.btn_navi.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_launchFragment_to_tableDetailFragment)
-        }
+        val databaseList = SQLHandler.getDatabaseList()
+        activity?.title = "当前应用共有${databaseList.size}个数据库文件"
+        contentView.rv_launch_db_list.adapter = DatabaseListAdapter(databaseList)
     }
 
     companion object {

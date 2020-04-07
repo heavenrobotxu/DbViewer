@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LaunchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.LaunchFragment"
+    android:background="@color/db_viewer_background">
 
-    <Button
-        android:id="@+id/btn_navi"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="navi_to"
-        android:layout_gravity="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_launch_db_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="10dp"/>
 
 </FrameLayout>
