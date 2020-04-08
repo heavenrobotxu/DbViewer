@@ -21,6 +21,21 @@ class MainActivity : AppCompatActivity() {
                     name = "xiaomiao"
                     age = 2
                 })
+
+            (application as App).dbSession.badCatDao.insertInTx(
+                BadCat().apply {
+                   bodyHeight = 3.8F
+                    bodyWidth = 3.6
+                    weight = 13
+                    tone = byteArrayOf(1,2,3,4,5)
+                    nickName = "Tom"
+                },
+                BadCat().apply {
+                    bodyHeight = 10F
+                    bodyWidth = 3.6999
+                    weight = 10
+                    tone = byteArrayOf(1,2)
+                })
         }
 
         tv_show.setOnClickListener {

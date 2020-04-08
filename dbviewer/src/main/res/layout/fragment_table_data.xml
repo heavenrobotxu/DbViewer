@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.TableDetailFragment">
+    tools:context=".ui.TableDataFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_table_list"
+        android:id="@+id/rv_column_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

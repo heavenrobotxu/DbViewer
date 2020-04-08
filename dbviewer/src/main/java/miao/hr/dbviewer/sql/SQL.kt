@@ -9,6 +9,9 @@ internal const val QUERY_TABLE_STRUCT = """
     FROM sqlite_master 
     WHERE type='table'"""
 
+internal const val SYSTEM_TABLE_METADATA = "android_metadata"
+internal const val SYSTEM_TABLE_SQLITE_SEQUENCE = "sqlite_sequence"
+
 //返回查询制定表名的SQL语句
 internal fun createQueryTableSQL(tableName: String) : String{
     return """SELECT * FROM $tableName"""
