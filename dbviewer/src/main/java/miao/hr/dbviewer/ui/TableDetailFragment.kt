@@ -16,8 +16,6 @@ import miao.hr.dbviewer.ui.adapter.DatabaseListAdapter
 
 internal class TableDetailFragment : Fragment() {
 
-    private var sqlDb: SQLiteDatabase? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,13 +31,17 @@ internal class TableDetailFragment : Fragment() {
 
     private fun initView(view: View) {
         arguments?.getString(ARGUMENT_DATABASE_NAME)?.let {
-            sqlDb = SQLHandler.openDatabaseByName(it)
-            if (sqlDb != null) {
-                val tableList = SQLHandler.getTableStructure(sqlDb!!)
-                activity?.title = "${it}未加密，共有${tableList.size}张表"
-                view.rv_table_list.adapter = DatabaseListAdapter(tableList, false)
-            }
+            SQLHandler.openDatabaseByName(it)
+            val tableList = SQLHandler.getTableStructure()
+            activity?.title = "$it${if (SQLHandler.isEncrypted()) "已加密" else "未加密"}，" +
+                    "共有${tableList.size}张表"
+            view.rv_table_list.adapter = DatabaseListAdapter(tableList, false)
         }
+    }
+
+    override fun onDestroy() {
+        SQLHandler.destroy()
+        super.onDestroy()
     }
 
     companion object {
