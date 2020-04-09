@@ -27,11 +27,11 @@ internal object SQLHandler {
         this.context = context
     }
 
-    //return all app databases in data dir
+    //返回当前应用能够找到的所有数据库(data目录下)
     fun getDatabaseList() = context.databaseList().asList().filter { !it.endsWith("journal") }
 
-    //open database by given name
-    fun openDatabaseByName(dbName: String) : Boolean{
+    //通过制定数据库名称打开数据库
+    fun openDatabaseByName(dbName: String): Boolean {
         val pwd: String? = try {
             context.packageManager.getApplicationInfo(
                 context.packageName,

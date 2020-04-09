@@ -23,8 +23,6 @@ internal class DbViewerLaunchActivity : Activity() {
 
         SQLHandler.init(applicationContext)
 
-        application
-
         addScreen(LaunchScreen.start(this))
     }
 

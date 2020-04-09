@@ -35,7 +35,7 @@ internal class TableDetailScreen(private var activity: Activity?) : Screen {
                 if (SQLHandler.openDatabaseByName(it)) {
                     contentView.post {
                         val tableList = SQLHandler.getTableStructure()
-                        title = "$it${if (SQLHandler.isEncrypted()) "已加密" else "未加密"}，" +
+                        title = "数据库${if (SQLHandler.isEncrypted()) "已加密" else "未加密"}，" +
                                 "共有${tableList.size}张表"
                         activity?.title = title
                         contentView.findViewById<ListView>(R.id.rv_table_list).adapter =

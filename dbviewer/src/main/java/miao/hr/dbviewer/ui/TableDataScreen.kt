@@ -29,7 +29,7 @@ class TableDataScreen(private var activity: Activity?) : Screen {
     override fun initScreen(extra: Bundle?) {
         extra?.getString(ARGUMENT_TABLE_NAME)?.let {
             val columnDetail = SQLHandler.getDataFromTable(it)
-            title = "${it}共有${columnDetail.size}条数据"
+            title = "当前表共有${columnDetail.size}条数据"
             activity?.title = title
             contentView.findViewById<ListView>(R.id.rv_column_list).adapter =
                 ColumnListAdapter(columnDetail)
