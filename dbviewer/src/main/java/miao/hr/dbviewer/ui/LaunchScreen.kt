@@ -27,7 +27,7 @@ internal class LaunchScreen(private var activity : Activity?) : Screen {
 
     override fun initScreen(extra: Bundle?){
         val databaseList = SQLHandler.getDatabaseList()
-        title = "当前应用共有${databaseList.size}个数据库文件"
+        title = "应用共有${databaseList.size}个数据库文件"
         activity?.title = title
         contentView.findViewById<ListView>(R.id.rv_launch_db_list).
             adapter = DatabaseListAdapter(databaseList)

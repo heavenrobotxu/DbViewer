@@ -38,8 +38,9 @@ internal class DatabaseListAdapter(
     override fun getCount(): Int = dataBaseList.size
 
     private fun initView(contentView: View, position: Int) {
-        contentView.findViewById<TextView>(R.id.tv_item_db_list_db_name).text =
-            dataBaseList[position]
+        val tv = contentView.findViewById<TextView>(R.id.tv_item_db_list_db_name)
+        tv.text = dataBaseList[position]
+        if (!isDbUi) tv.textSize = 18f
         contentView.findViewById<LinearLayout>(R.id.ll_item_db_list_bg).setOnClickListener {
             val act = (contentView.context as DbViewerLaunchActivity)
             if (isDbUi) {
