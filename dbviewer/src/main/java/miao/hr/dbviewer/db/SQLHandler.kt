@@ -36,7 +36,7 @@ internal object SQLHandler {
             context.packageManager.getApplicationInfo(
                 context.packageName,
                 PackageManager.GET_META_DATA
-            ).metaData.getString(dbName)
+            ).metaData.getString("DB_PWD")
         } catch (e: Exception) {
             null
         }
@@ -46,6 +46,7 @@ internal object SQLHandler {
         } else {
             //找到该数据库的密码，使用加密方式打开数据库
             openEncryptedDatabaseByName(dbName, pwd.drop(5))
+                    || openNoEncryptedDatabaseByName(dbName)
         }
     }
 
