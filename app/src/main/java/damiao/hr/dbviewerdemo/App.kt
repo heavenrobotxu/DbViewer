@@ -13,6 +13,6 @@ class App : Application() {
         super.onCreate()
 
         val daoMasterHelper = DaoMaster.DevOpenHelper(this, "miao_db")
-        dbSession = DaoMaster(daoMasterHelper.writableDatabase).newSession()
+        dbSession = DaoMaster(daoMasterHelper.getEncryptedWritableDb("123456")).newSession()
     }
 }

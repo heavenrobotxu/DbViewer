@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.TableDetailFragment">
+    tools:context=".ui.TableDetailScreen">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/rv_table_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
 
 </FrameLayout>

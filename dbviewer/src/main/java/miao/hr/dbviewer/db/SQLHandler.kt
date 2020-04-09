@@ -1,8 +1,10 @@
 package miao.hr.dbviewer.db
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.util.ArrayMap
 import android.util.Log
 import miao.hr.dbviewer.ColumnData
 import miao.hr.dbviewer.buildList
@@ -10,6 +12,7 @@ import miao.hr.dbviewer.sql.QUERY_TABLE_STRUCT
 import miao.hr.dbviewer.sql.SYSTEM_TABLE_METADATA
 import miao.hr.dbviewer.sql.SYSTEM_TABLE_SQLITE_SEQUENCE
 import miao.hr.dbviewer.sql.createQueryTableSQL
+import java.util.concurrent.Executors
 
 internal object SQLHandler {
 
@@ -28,28 +31,54 @@ internal object SQLHandler {
     fun getDatabaseList() = context.databaseList().asList().filter { !it.endsWith("journal") }
 
     //open database by given name
-    fun openDatabaseByName(dbName: String) {
-        try {
-            currentDatabase = context.openOrCreateDatabase(dbName, Context.MODE_PRIVATE, null)
+    fun openDatabaseByName(dbName: String) : Boolean{
+        val pwd: String? = try {
+            context.packageManager.getApplicationInfo(
+                context.packageName,
+                PackageManager.GET_META_DATA
+            ).metaData.getString(dbName)
         } catch (e: Exception) {
-            //open database fail, may be database has already encrypted,try open EncryptedDatabase
-            openEncryptedDatabaseByName(dbName, "a123456")
+            null
+        }
+        return if (pwd.isNullOrEmpty()) {
+            //没有找到该数据库的密码，默认使用普通方式打开数据库
+            openNoEncryptedDatabaseByName(dbName)
+        } else {
+            //找到该数据库的密码，使用加密方式打开数据库
+            openEncryptedDatabaseByName(dbName, pwd.drop(5))
+        }
+    }
+
+    private fun openNoEncryptedDatabaseByName(dbName: String): Boolean {
+        return try {
+            currentDatabase = SQLiteDatabase.openDatabase(
+                context.getDatabasePath(dbName).path,
+                null,
+                SQLiteDatabase.OPEN_READONLY
+            )
+            isEncrypted = false
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "can not open this database")
+            false
         }
     }
 
     //open database by given name
-    private fun openEncryptedDatabaseByName(dbName: String, pwd: String) {
-        try {
+    private fun openEncryptedDatabaseByName(dbName: String, pwd: String): Boolean {
+        return try {
             net.sqlcipher.database.SQLiteDatabase.loadLibs(context)
-            isEncrypted = true
             currentEncryptedDatabase = net.sqlcipher.database.SQLiteDatabase.openDatabase(
-                dbName,
+                context.getDatabasePath(dbName).path,
                 pwd,
                 null,
-                Context.MODE_PRIVATE
+                SQLiteDatabase.OPEN_READONLY
             )
+            isEncrypted = true
+            true
         } catch (e: Exception) {
             Log.e(TAG, "can not open this database")
+            false
         }
     }
 
@@ -58,7 +87,7 @@ internal object SQLHandler {
         return if (!isEncrypted) getNoEncryptedTableStructure() else getEncryptedTableStructure()
     }
 
-    private fun getNoEncryptedTableStructure() : List<String>{
+    private fun getNoEncryptedTableStructure(): List<String> {
         val cursor = currentDatabase!!.rawQuery(QUERY_TABLE_STRUCT, null)
         return if (cursor != null) {
             buildList<String> {
@@ -70,7 +99,7 @@ internal object SQLHandler {
         } else emptyList()
     }
 
-    private fun getEncryptedTableStructure() : List<String>{
+    private fun getEncryptedTableStructure(): List<String> {
         val cursor = currentEncryptedDatabase!!.rawQuery(QUERY_TABLE_STRUCT, null)
         return if (cursor != null) {
             buildList<String> {
@@ -88,7 +117,7 @@ internal object SQLHandler {
         else getEncryptedDataFromTable(tableName)
     }
 
-    private fun getNoEncryptedDataFromTable(tableName: String): List<List<Pair<String, ColumnData>>>  {
+    private fun getNoEncryptedDataFromTable(tableName: String): List<List<Pair<String, ColumnData>>> {
         val cursor = currentDatabase!!.rawQuery(createQueryTableSQL(tableName), null)
         if (cursor != null) {
             return buildList {
@@ -127,7 +156,7 @@ internal object SQLHandler {
         }
     }
 
-    private fun getEncryptedDataFromTable(tableName: String): List<List<Pair<String, ColumnData>>>  {
+    private fun getEncryptedDataFromTable(tableName: String): List<List<Pair<String, ColumnData>>> {
         val cursor = currentEncryptedDatabase!!.rawQuery(createQueryTableSQL(tableName), null)
         if (cursor != null) {
             return buildList {
