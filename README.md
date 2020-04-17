@@ -2,7 +2,7 @@
 ## An Android database real-time viewer on mobile
 
 ### 介绍
-<img src="https://s1.ax1x.com/2020/04/17/JEcrVO.jpg" width = "250" height = "444"/><img src="https://s1.ax1x.com/2020/04/17/JEcsaD.md.jpg" width = "250" height = "444"/><img src="https://s1.ax1x.com/2020/04/17/JEcyIe.jpg" width = "250" height = "444"/>
+<img src="https://s1.ax1x.com/2020/04/17/JEcrVO.jpg" width = "260" margin = "10"/><img src="https://s1.ax1x.com/2020/04/17/JEcsaD.md.jpg" width = "260" margin = "10"/><img src="https://s1.ax1x.com/2020/04/17/JEcyIe.jpg" width = "260" margin = "10"/>
 
 在我们平时的Android开发中总是会使用到本地sqlite数据库，所以在开发期间对本地数据库进行实时数据的调试和查看是个很重要工作，我们可以通过AndroidStudio的Device File Explorer导出data目录下的.db文件再用navicat等桌面级的数据库查看工具打开，或者是使用AndroidStudio的插件例如SQLScout来帮助我们导入db文件并查看，但这几种方式都各有各的问题，比如无法直接打开我们通过SQLCipher加密过的数据库文件，又或者插件本身需要License，且这些方式都是从开发的角度查看数据库的，测试过程中发现问题也没有办法第一时间直接导出应用里的db文件定位问题，所以这里开源一个非常简单的小工具，可以实时在手机上查看当前应用的所有db文件并可以打开查看所有表以及表中的数据，包括使用SQLCipher加密过的数据库。
 
