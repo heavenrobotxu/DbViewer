@@ -6,16 +6,16 @@
 	<tr>
 		<td>
     	<center>
-      	<img src="https://s1.ax1x.com/2020/04/17/JEcrVO.jpg" width = "270" height = “480” />数据库展示 </center>
+      	<img src="https://s1.ax1x.com/2020/04/17/JEcrVO.jpg" width = "270" height = “480” /></center>
     </td>
 		<td>
     	<center>
-      	<img src="https://s1.ax1x.com/2020/04/17/JEcsaD.md.jpg" width = "270" height = “480”/>表展示
-    	</center>
+      	<img src="https://s1.ax1x.com/2020/04/17/JEcsaD.md.jpg" width = "270" height = “480”/>
+      </center>
   	</td>
 		<td>
     	<center>
-      	<img src="https://s1.ax1x.com/2020/04/17/JEcyIe.jpg" width = "270" height = “480”/>数据展示
+      	<img src="https://s1.ax1x.com/2020/04/17/JEcyIe.jpg" width = "270" height = “480”/>
     	</center>
     </td>
 	</tr>
